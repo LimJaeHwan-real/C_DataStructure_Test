@@ -1,4 +1,4 @@
-# Shared Test Kit
+# C_DataStructure_Test
 
 `shared-test-kit` 폴더를 실제 `Data-Structures/` 폴더와 같은 루트 경로에 두면 바로 테스트를 실행할 수 있습니다.
 
