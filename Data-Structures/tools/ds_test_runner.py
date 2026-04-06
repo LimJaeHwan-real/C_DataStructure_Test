@@ -638,11 +638,13 @@ def main() -> int:
             print(f'💥 [오류] {test_file.relative_to(SCRIPT_ROOT)}')
             print(f'  {exc}')
 
-    overall_icon = '✅' if not failed_files and not missing_files else '❌'
-    print(
-        f'\n{overall_icon} 요약: 총 {total_cases}개 케이스 중 {total_passed}개 통과, '
-        f'테스트 정의 파일 없음 {missing_files}개, 건너뜀 {skipped_files}개'
-    )
+    overall_icon = '✅' if not failed_files and not missing_files and not skipped_files else '❌'
+    summary_parts = [f'총 {total_cases}개 케이스 중 {total_passed}개 통과']
+    if missing_files:
+        summary_parts.append(f'테스트 정의 파일 없음 {missing_files}개')
+    if skipped_files:
+        summary_parts.append(f'건너뜀 {skipped_files}개')
+    print(f"\n{overall_icon} 요약: {', '.join(summary_parts)}")
     return 1 if failed_files or missing_files else 0
 
 
