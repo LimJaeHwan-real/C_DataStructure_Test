@@ -1,4 +1,4 @@
-# C_DataStructure_Test
+# Shared Test Kit
 
 `shared-test-kit` 폴더를 실제 `Data-Structures/` 폴더와 같은 루트 경로에 두면 바로 테스트를 실행할 수 있습니다.
 
@@ -143,7 +143,8 @@
 - `예상 출력`은 JSON의 원본 영어 문구를 바탕으로, README에서는 읽기 쉽게 한국어로 옮겨 적었습니다.
 - `케이스 이름`은 보기 쉽게 한국어로 번역해 적고, 원래 JSON의 `name` 값은 괄호 안의 백틱으로 함께 적었습니다.
 
-### Linked List
+<details>
+<summary><strong>Linked List</strong></summary>
 
 #### `Q1_A_LL.dstest.json`
 
@@ -692,7 +693,9 @@
 연결 리스트를 뒤집은 결과: 10 4 0 -1
 ```
 
-### Stack and Queue
+</details>
+<details>
+<summary><strong>Stack and Queue</strong></summary>
 
 #### `Q1_C_SQ.dstest.json`
 
@@ -844,7 +847,9 @@
 균형 잡힘!
 ```
 
-### Binary Tree
+</details>
+<details>
+<summary><strong>Binary Tree</strong></summary>
 
 #### `Q1_E_BT.dstest.json`
 
@@ -1025,7 +1030,9 @@
 증손자가 하나 이상 있는 노드의 값들: 50
 ```
 
-### Binary Search Tree
+</details>
+<details>
+<summary><strong>Binary Search Tree</strong></summary>
 
 #### `Q1_F_BST.dstest.json`
 
@@ -1131,3 +1138,5 @@
 ```text
 이진 탐색 트리의 후위 순회 결과: 10 18 15 25 80 50 20
 ```
+
+</details>
