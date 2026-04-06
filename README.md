@@ -1,17 +1,23 @@
-# Shared Test Kit
+# C_DataStructure_Test
 
-`shared-test-kit` 폴더를 실제 `Data-Structures/` 폴더와 같은 루트 경로에 두면 바로 테스트를 실행할 수 있습니다.
+`C_DataStructure_Test` 폴더를 실제 `Data-Structures/` 폴더와 같은 루트 경로에 두면 바로 테스트를 실행할 수 있습니다.
 
 ## 빠른 설치
 
-1. `shared-test-kit/` 폴더를 `Data-Structures/` 옆에 둡니다.
-2. 아래 명령을 한 번 실행합니다.
+1. 프로젝트 루트에서 아래 명령으로 저장소를 내려받습니다.
 
 ```bash
-./shared-test-kit/install.sh
+git clone git@github.com:LimJaeHwan-real/C_DataStructure_Test.git C_DataStructure_Test
 ```
 
-3. 그 다음부터는 아래처럼 간단히 사용할 수 있습니다.
+2. `C_DataStructure_Test/` 폴더를 `Data-Structures/` 폴더와 같은 루트에 둡니다.
+3. 아래 명령을 한 번 실행합니다.
+
+```bash
+./C_DataStructure_Test/install.sh
+```
+
+4. 그 다음부터는 아래처럼 간단히 사용할 수 있습니다.
 
 ```bash
 ./test list 1
@@ -21,6 +27,60 @@
 여기서 마지막 숫자는 문제 번호입니다.
 - `./test list 1` 의 `1`은 Linked List 1번 문제입니다.
 - `./test queue 3` 의 `3`은 Stack and Queue 3번 문제입니다.
+
+
+## 환경별 설치
+
+공통 전제:
+- `C_DataStructure_Test/` 폴더와 `Data-Structures/` 폴더가 같은 루트에 있어야 합니다.
+- 설치는 프로젝트 루트에서 실행합니다.
+
+### macOS 직접 실행
+
+필요한 것:
+- `bash`
+- `python3`
+- C 컴파일러
+
+보통은 아래 명령으로 준비합니다.
+```bash
+xcode-select --install
+```
+
+그 다음 프로젝트 루트에서 실행합니다.
+```bash
+./C_DataStructure_Test/install.sh
+./test list 1
+```
+
+### Ubuntu 직접 실행
+
+필요한 것:
+- `bash`
+- `python3`
+- `gcc`
+
+보통은 아래 명령으로 준비합니다.
+```bash
+sudo apt update
+sudo apt install -y build-essential python3
+```
+
+그 다음 프로젝트 루트에서 실행합니다.
+```bash
+./C_DataStructure_Test/install.sh
+./test list 1
+```
+
+### Docker / Dev Container 실행
+
+Docker나 VS Code Dev Container 안에서 실행하면, macOS든 다른 운영체제든 컨테이너의 Linux 환경 기준으로 동일하게 사용할 수 있습니다.
+
+컨테이너 안의 프로젝트 루트에서 실행합니다.
+```bash
+./C_DataStructure_Test/install.sh
+./test list 1
+```
 
 ## 자주 쓰는 명령
 
@@ -63,7 +123,7 @@
 
 ## 자료구조별 테스트 파일 정리
 
-테스트 정의 파일은 모두 `shared-test-kit/Data-Structures/tests/` 아래에 있습니다.
+테스트 정의 파일은 모두 `C_DataStructure_Test/Data-Structures/tests/` 아래에 있습니다.
 
 ### Linked List
 
