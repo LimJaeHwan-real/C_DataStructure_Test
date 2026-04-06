@@ -22,15 +22,30 @@ SOURCE_FOLDERS = (
 )
 
 
+def has_source_structure(root: Path) -> bool:
+    return all((root / folder).is_dir() for folder in SOURCE_FOLDERS)
+
+
 def detect_source_root() -> Path:
-    # Normal layout: tests/tools live inside the same Data-Structures root as sources.
-    if any((SCRIPT_ROOT / folder).exists() for folder in SOURCE_FOLDERS):
+    # Normal layout: tests/tools live inside the same source root as the question folders.
+    if has_source_structure(SCRIPT_ROOT):
         return SCRIPT_ROOT
 
-    # Shared-kit layout: shared-test-kit sits beside the real Data-Structures source tree.
-    sibling_root = SCRIPT_ROOT.parent.parent / 'Data-Structures'
-    if sibling_root.exists() and any((sibling_root / folder).exists() for folder in SOURCE_FOLDERS):
-        return sibling_root
+    # Shared-kit layout: shared-test-kit sits beside the real source root.
+    workspace_root = SCRIPT_ROOT.parent.parent
+    preferred = workspace_root / 'Data-Structures'
+    candidates: list[Path] = []
+    if preferred.exists() and has_source_structure(preferred):
+        candidates.append(preferred)
+
+    for child in sorted(workspace_root.iterdir()):
+        if not child.is_dir() or child == preferred or child == SCRIPT_ROOT.parent:
+            continue
+        if has_source_structure(child):
+            candidates.append(child)
+
+    if candidates:
+        return candidates[0]
 
     return SCRIPT_ROOT
 
@@ -507,6 +522,62 @@ def print_detail_block(label: str, value: str, max_lines: int = 40) -> None:
 
 
 
+def simplify_actual_output(value: str) -> str:
+    text = value.decode() if isinstance(value, bytes) else str(value)
+    normalized = normalize_text(text)
+    if not normalized:
+        return '(없음)'
+
+    split_markers = [
+        'The resulting',
+        'The odd',
+        'The even',
+        'The expression',
+        'The value',
+        'The tree',
+        'The linked list',
+        'The stack',
+        'The queue',
+        'The binary',
+        'The node',
+        'The sum',
+        'The smallest',
+        'The height',
+        'Two trees',
+        'Identical',
+        'Not identical',
+        'not balanced!',
+        'balanced!',
+        'Please input',
+        'Input ',
+    ]
+
+    segmented = normalized
+    for marker in split_markers:
+        segmented = segmented.replace(marker, f'\n{marker}')
+
+    meaningful: list[str] = []
+    for raw_segment in segmented.splitlines():
+        segment = raw_segment.strip()
+        if not segment:
+            continue
+        lower = segment.lower()
+        if re.match(r'^\d+:\s', segment):
+            continue
+        if lower.startswith('please input'):
+            continue
+        if lower.startswith('input '):
+            continue
+        if lower == 'quit:':
+            continue
+        meaningful.append(segment)
+
+    if meaningful:
+        return meaningful[-1]
+    return normalized
+
+
+
 def print_results_for_file(test_file: Path, source: Path, results: list[CaseResult]) -> tuple[int, int, int]:
     rel_test = test_file.relative_to(SCRIPT_ROOT)
     rel_source = source.relative_to(SOURCE_ROOT)
@@ -538,11 +609,11 @@ def print_results_for_file(test_file: Path, source: Path, results: list[CaseResu
 
             out = result.stdout.decode() if isinstance(result.stdout, bytes) else result.stdout
             actual_text = str(result.actual).strip() if result.actual else ''
-            display_actual = actual_text or out.strip() or '(없음)'
+            if actual_text.startswith('종료 코드') or actual_text == '시간 초과':
+                display_actual = actual_text
+            else:
+                display_actual = simplify_actual_output(out or actual_text)
             print_detail_block('실제 결과', display_actual, max_lines=40)
-
-            if out.strip() and normalize_text(out) != normalize_text(display_actual):
-                print_detail_block('실제 stdout', out, max_lines=40)
 
             err = result.stderr.decode() if isinstance(result.stderr, bytes) else result.stderr
             if err and err.strip():
