@@ -1,0 +1,30 @@
+{
+  "source": "../../Binary_Search_Tree/Q4_F_BST.c",
+  "notes": "Extended cases for iterative post-order traversal using one stack.",
+  "cases": [
+    {
+      "name": "sample_postorder_iterative_single_stack",
+      "input": "1\n20\n1\n15\n1\n50\n1\n10\n1\n18\n1\n25\n1\n80\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting post-order traversal of the binary search tree is: 10 18 15 25 80 50 20"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "right_skewed_tree_postorder",
+      "input": "1\n10\n1\n20\n1\n30\n1\n40\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting post-order traversal of the binary search tree is: 40 30 20 10"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "left_subtree_with_two_children_postorder",
+      "input": "1\n30\n1\n20\n1\n10\n1\n25\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting post-order traversal of the binary search tree is: 10 25 20 30"
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}

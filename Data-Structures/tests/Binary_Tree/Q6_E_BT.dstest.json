@@ -1,0 +1,36 @@
+{
+  "source": "../../Binary_Tree/Q6_E_BT.c",
+  "notes": "Extended cases for printing values smaller than a given threshold in pre-order.",
+  "cases": [
+    {
+      "name": "sample_print_smaller_values",
+      "input": "1\n50\n30\n60\n25\n65\na\na\na\na\n10\n75\na\na\na\na\n2\n55\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 25 30 65 50 10 60 75",
+        "The values smaller than 55 are: 50 30 25 10"
+      ],
+      "normalize_whitespace": true,
+      "timeout_sec": 10
+    },
+    {
+      "name": "single_node_below_threshold_is_printed",
+      "input": "1\n7\na\na\n2\n10\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 7",
+        "The values smaller than 10 are: 7"
+      ],
+      "normalize_whitespace": true,
+      "timeout_sec": 10
+    },
+    {
+      "name": "preorder_filtered_values_keep_tree_order",
+      "input": "1\n5\n2\n8\na\na\na\na\n2\n6\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 2 5 8",
+        "The values smaller than 6 are: 5 2"
+      ],
+      "normalize_whitespace": true,
+      "timeout_sec": 10
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "source": "../../Binary_Tree/Q8_E_BT.c",
+  "notes": "Extended cases for printing nodes that have at least one great-grandchild.",
+  "cases": [
+    {
+      "name": "sample_has_great_grandchild",
+      "input": "1\n50\n30\n60\n25\n65\na\na\n20\na\na\na\n10\n75\na\na\na\n15\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 25 30 20 65 50 10 60 75 15",
+        "The values stored in all nodes of the tree that has at least one great-grandchild are: 50"
+      ],
+      "normalize_whitespace": true,
+      "timeout_sec": 10
+    },
+    {
+      "name": "left_chain_of_four_only_root_qualifies",
+      "input": "1\n50\n40\na\n30\na\n20\na\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 20 30 40 50",
+        "The values stored in all nodes of the tree that has at least one great-grandchild are: 50"
+      ],
+      "normalize_whitespace": true,
+      "timeout_sec": 10
+    },
+    {
+      "name": "left_chain_of_five_has_two_qualifying_nodes",
+      "input": "1\n50\n40\na\n30\na\n20\na\n10\na\na\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 10 20 30 40 50",
+        "The values stored in all nodes of the tree that has at least one great-grandchild are: 50 40"
+      ],
+      "normalize_whitespace": true,
+      "timeout_sec": 10
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "source": "../../Stack_and_Queue/Q2_C_SQ.c",
+  "notes": "Extended cases for stack creation from a linked list and even-number removal.",
+  "cases": [
+    {
+      "name": "sample_create_stack_and_remove_evens",
+      "input": "1\n1\n1\n3\n1\n5\n1\n6\n1\n7\n2\n3\n0\n",
+      "expect_contains_all": [
+        "The resulting stack is: 7 6 5 3 1",
+        "The resulting stack after removing even integers is: 7 5 3 1"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "all_even_values_are_removed",
+      "input": "1\n2\n1\n4\n1\n6\n2\n3\n0\n",
+      "expect_contains_all": [
+        "The resulting stack is: 6 4 2",
+        "The resulting stack after removing even integers is: Empty"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "odd_values_remain_unchanged",
+      "input": "1\n1\n1\n3\n1\n5\n2\n3\n0\n",
+      "expect_contains_all": [
+        "The resulting stack is: 5 3 1",
+        "The resulting stack after removing even integers is: 5 3 1"
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}

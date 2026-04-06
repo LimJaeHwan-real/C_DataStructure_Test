@@ -1,0 +1,33 @@
+{
+  "source": "../../Stack_and_Queue/Q7_C_SQ.c",
+  "notes": "Extended cases for balanced bracket checking.",
+  "cases": [
+    {
+      "name": "sample_balanced_expression",
+      "input": "1\n{[]()[]}\n2\n0\n",
+      "normalize_whitespace": true,
+      "expect_regex_all": [
+        "(^|\\n)balanced!"
+      ],
+      "expect_not_contains": [
+        "not balanced!"
+      ]
+    },
+    {
+      "name": "mismatched_expression_is_not_balanced",
+      "input": "1\n{[(])}\n2\n0\n",
+      "expect_contains_all": [
+        "not balanced!"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "missing_closing_bracket_is_not_balanced",
+      "input": "1\n(()\n2\n0\n",
+      "expect_contains_all": [
+        "not balanced!"
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "source": "../../Binary_Search_Tree/Q2_F_BST.c",
+  "notes": "Extended cases for iterative in-order traversal of a binary search tree.",
+  "cases": [
+    {
+      "name": "sample_inorder_iterative",
+      "input": "1\n20\n1\n15\n1\n50\n1\n10\n1\n18\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting in-order traversal of the binary search tree is: 10 15 18 20 50"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "duplicates_are_ignored_and_output_remains_sorted",
+      "input": "1\n20\n1\n15\n1\n20\n1\n15\n1\n25\n1\n10\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting in-order traversal of the binary search tree is: 10 15 20 25"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "single_node_inorder",
+      "input": "1\n42\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting in-order traversal of the binary search tree is: 42"
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}

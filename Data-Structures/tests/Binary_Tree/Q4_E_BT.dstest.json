@@ -1,0 +1,33 @@
+{
+  "source": "../../Binary_Tree/Q4_E_BT.c",
+  "notes": "Extended cases for summing odd values in a binary tree.",
+  "cases": [
+    {
+      "name": "sample_sum_of_odd_nodes",
+      "input": "1\n50\n40\n60\n11\n35\na\na\na\na\n80\n85\nb\nb\nb\nb\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 11 40 35 50 80 60 85",
+        "The sum of all odd numbers in the binary tree is: 131."
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "single_odd_node_sum_is_the_node_value",
+      "input": "1\n7\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 7",
+        "The sum of all odd numbers in the binary tree is: 7."
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "all_even_values_sum_to_zero",
+      "input": "1\n8\n4\n6\na\na\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 4 8 6",
+        "The sum of all odd numbers in the binary tree is: 0."
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}

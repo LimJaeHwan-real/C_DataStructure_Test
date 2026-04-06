@@ -1,0 +1,30 @@
+{
+  "source": "../../Binary_Search_Tree/Q1_F_BST.c",
+  "notes": "Extended cases for level-order traversal of a binary search tree.",
+  "cases": [
+    {
+      "name": "sample_level_order_traversal",
+      "input": "1\n20\n1\n15\n1\n50\n1\n10\n1\n18\n1\n25\n1\n80\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting level-order traversal of the binary search tree is: 20 15 50 10 18 25 80"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "right_skewed_tree_level_order",
+      "input": "1\n10\n1\n20\n1\n30\n1\n40\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting level-order traversal of the binary search tree is: 10 20 30 40"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "duplicate_values_are_ignored_in_level_order",
+      "input": "1\n20\n1\n15\n1\n20\n1\n15\n1\n25\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting level-order traversal of the binary search tree is: 20 15 25"
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}

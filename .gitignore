@@ -1,0 +1,7 @@
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# Test runner build artifacts
+Data-Structures/.ds_test_build/

@@ -1,0 +1,33 @@
+{
+  "source": "../../Stack_and_Queue/Q1_C_SQ.c",
+  "notes": "Extended cases for queue creation from a linked list and odd-number removal.",
+  "cases": [
+    {
+      "name": "sample_create_queue_and_remove_odds",
+      "input": "1\n1\n1\n2\n1\n3\n1\n4\n1\n5\n2\n3\n0\n",
+      "expect_contains_all": [
+        "The resulting queue is: 1 2 3 4 5",
+        "The resulting queue after removing odd integers is: 2 4"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "all_odd_values_are_removed",
+      "input": "1\n9\n1\n7\n1\n5\n2\n3\n0\n",
+      "expect_contains_all": [
+        "The resulting queue is: 9 7 5",
+        "The resulting queue after removing odd integers is: Empty"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "all_even_values_remain",
+      "input": "1\n2\n1\n4\n1\n6\n2\n3\n0\n",
+      "expect_contains_all": [
+        "The resulting queue is: 2 4 6",
+        "The resulting queue after removing odd integers is: 2 4 6"
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "source": "../../Stack_and_Queue/Q4_C_SQ.c",
+  "notes": "Extended cases for iterative queue reversal using a stack.",
+  "cases": [
+    {
+      "name": "sample_reverse_queue",
+      "input": "1\n1\n1\n2\n1\n3\n1\n4\n1\n5\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting queue after reversing its elements is: 5 4 3 2 1"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "even_length_queue_reversed",
+      "input": "1\n10\n1\n20\n1\n30\n1\n40\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting queue after reversing its elements is: 40 30 20 10"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "single_item_queue_stays_same",
+      "input": "1\n99\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting queue after reversing its elements is: 99"
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}

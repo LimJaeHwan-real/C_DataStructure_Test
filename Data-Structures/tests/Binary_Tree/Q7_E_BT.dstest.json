@@ -1,0 +1,33 @@
+{
+  "source": "../../Binary_Tree/Q7_E_BT.c",
+  "notes": "Extended cases for finding the smallest value in a binary tree.",
+  "cases": [
+    {
+      "name": "sample_smallest_value",
+      "input": "1\n50\n30\n60\n25\n65\na\na\na\na\n10\n75\na\na\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 25 30 65 50 10 60 75",
+        "Smallest value of the binary tree is: 10"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "single_node_is_the_smallest_value",
+      "input": "1\n7\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 7",
+        "Smallest value of the binary tree is: 7"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "minimum_value_can_be_in_right_subtree",
+      "input": "1\n50\n60\n10\na\na\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 60 50 10",
+        "Smallest value of the binary tree is: 10"
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}

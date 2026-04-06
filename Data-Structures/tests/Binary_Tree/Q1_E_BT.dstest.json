@@ -1,0 +1,39 @@
+{
+  "source": "../../Binary_Tree/Q1_E_BT.c",
+  "notes": "Extended cases for checking whether two binary trees are structurally identical.",
+  "cases": [
+    {
+      "name": "sample_identical_trees",
+      "input": "1\n5\n3\n7\n1\n2\na\na\na\na\n4\n8\na\na\na\na\n2\n5\n3\n7\n1\n2\na\na\na\na\n4\n8\na\na\na\na\n3\n0\n",
+      "expect_contains_all": [
+        "The resulting tree1 is: 1 3 2 5 4 7 8",
+        "The resulting tree2 is: 1 3 2 5 4 7 8",
+        "Both trees are structurally identical."
+      ],
+      "normalize_whitespace": true,
+      "timeout_sec": 10
+    },
+    {
+      "name": "single_node_trees_are_identical",
+      "input": "1\n42\na\na\n2\n42\na\na\n3\n0\n",
+      "expect_contains_all": [
+        "The resulting tree1 is: 42",
+        "The resulting tree2 is: 42",
+        "Both trees are structurally identical."
+      ],
+      "normalize_whitespace": true,
+      "timeout_sec": 10
+    },
+    {
+      "name": "different_structures_are_detected",
+      "input": "1\n1\n2\na\na\na\n2\n1\na\n2\na\na\n3\n0\n",
+      "expect_contains_all": [
+        "The resulting tree1 is: 2 1",
+        "The resulting tree2 is: 1 2",
+        "Both trees are different."
+      ],
+      "normalize_whitespace": true,
+      "timeout_sec": 10
+    }
+  ]
+}

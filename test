@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+KIT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+RUNNER="$KIT_DIR/run_ds_tests.sh"
+INSTALLER="$KIT_DIR/install.sh"
+
+usage() {
+  cat <<'USAGE'
+Usage:
+  ./test                       Run all tests
+  ./test all                   Run all tests
+  ./test status                List all discovered problems and test definitions
+  ./test list [n]              Run all Linked_List tests, or one question if n is given
+  ./test queue [n]             Run all Stack_and_Queue tests, or one question if n is given
+  ./test tree [n]              Run all Binary_Tree tests, or one question if n is given
+  ./test bst [n]               Run all Binary_Search_Tree tests, or one question if n is given
+  ./test install               Create root wrappers so recipients can use ./test from the project root
+  ./test raw ...               Pass arguments directly to run_ds_tests.sh
+
+Examples:
+  ./test list
+  ./test list 5
+  ./test install
+USAGE
+}
+
+folder_for_group() {
+  case "$1" in
+    list|linked|ll) echo "Linked_List" ;;
+    queue|sq|stack) echo "Stack_and_Queue" ;;
+    tree|bt) echo "Binary_Tree" ;;
+    bst|search) echo "Binary_Search_Tree" ;;
+    *) return 1 ;;
+  esac
+}
+
+prefix_for_group() {
+  case "$1" in
+    list|linked|ll) echo "A_LL" ;;
+    queue|sq|stack) echo "C_SQ" ;;
+    tree|bt) echo "E_BT" ;;
+    bst|search) echo "F_BST" ;;
+    *) return 1 ;;
+  esac
+}
+
+run_and_exit() {
+  "$@"
+  exit $?
+}
+
+if [[ $# -eq 0 ]]; then
+  run_and_exit "$RUNNER"
+fi
+
+cmd="$1"
+shift || true
+
+case "$cmd" in
+  help|-h|--help)
+    usage
+    exit 0
+    ;;
+  all)
+    run_and_exit "$RUNNER"
+    ;;
+  status|ls)
+    run_and_exit "$RUNNER" --list
+    ;;
+  raw)
+    run_and_exit "$RUNNER" "$@"
+    ;;
+  install)
+    run_and_exit "$INSTALLER" "$@"
+    ;;
+  list|linked|ll|queue|sq|stack|tree|bt|bst|search)
+    folder="$(folder_for_group "$cmd")"
+    prefix="$(prefix_for_group "$cmd")"
+    target="${1:-}"
+    if [[ -z "$target" || "$target" == "all" ]]; then
+      run_and_exit "$RUNNER" --folder "$folder"
+    fi
+    if [[ ! "$target" =~ ^[0-9]+$ ]]; then
+      echo "Question number must be a number, omitted, or 'all'." >&2
+      exit 1
+    fi
+    test_id="Q${target}_${prefix}"
+    run_and_exit "$RUNNER" --test "$test_id"
+    ;;
+  *)
+    usage
+    exit 1
+    ;;
+esac

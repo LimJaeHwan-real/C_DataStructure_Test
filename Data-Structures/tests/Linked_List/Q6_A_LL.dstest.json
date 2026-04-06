@@ -1,0 +1,38 @@
+{
+  "source": "../../Linked_List/Q6_A_LL.c",
+  "notes": "Extended cases for moving the maximum value to the front.",
+  "cases": [
+    {
+      "name": "sample_move_max_to_front",
+      "input": "1\n30\n1\n20\n1\n40\n1\n70\n1\n50\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting linked list after moving largest stored value to the front of the list is: 70 30 20 40 50"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "max_already_at_front_list_unchanged",
+      "input": "1\n90\n1\n20\n1\n30\n1\n40\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting linked list after moving largest stored value to the front of the list is: 90 20 30 40"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "single_node_list_stays_same",
+      "input": "1\n5\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting linked list after moving largest stored value to the front of the list is: 5"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "negative_numbers_still_move_largest_to_front",
+      "input": "1\n-10\n1\n-3\n1\n-20\n1\n-7\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting linked list after moving largest stored value to the front of the list is: -3 -10 -20 -7"
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}

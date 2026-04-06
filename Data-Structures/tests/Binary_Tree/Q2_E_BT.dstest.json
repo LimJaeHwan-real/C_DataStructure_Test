@@ -1,0 +1,33 @@
+{
+  "source": "../../Binary_Tree/Q2_E_BT.c",
+  "notes": "Extended cases for computing the maximum height of a binary tree.",
+  "cases": [
+    {
+      "name": "sample_max_height",
+      "input": "1\n4\n2\n6\n1\n3\na\na\na\na\n5\n7\na\na\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 1 2 3 4 5 6 7",
+        "The maximum height of the binary tree is: 2"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "single_node_height_is_zero",
+      "input": "1\n42\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 42",
+        "The maximum height of the binary tree is: 0"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "left_skewed_tree_height_is_two",
+      "input": "1\n50\n30\na\n10\na\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 10 30 50",
+        "The maximum height of the binary tree is: 2"
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}

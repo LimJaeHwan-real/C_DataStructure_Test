@@ -1,0 +1,42 @@
+{
+  "source": "../../Linked_List/Q5_A_LL.c",
+  "notes": "Extended cases for front/back split with odd, even, and single-node lists.",
+  "cases": [
+    {
+      "name": "sample_front_back_split",
+      "input": "1\n2\n1\n3\n1\n5\n1\n6\n1\n7\n2\n0\n",
+      "expect_contains_all": [
+        "앞 리스트: 2 3 5",
+        "뒤 리스트: 6 7"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "even_length_split_is_balanced",
+      "input": "1\n1\n1\n2\n1\n3\n1\n4\n1\n5\n1\n6\n2\n0\n",
+      "expect_contains_all": [
+        "앞 리스트: 1 2 3",
+        "뒤 리스트: 4 5 6"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "single_node_goes_to_front",
+      "input": "1\n99\n2\n0\n",
+      "expect_contains_all": [
+        "앞 리스트: 99",
+        "뒤 리스트: Empty"
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "three_nodes_front_gets_extra_item",
+      "input": "1\n10\n1\n20\n1\n30\n2\n0\n",
+      "expect_contains_all": [
+        "앞 리스트: 10 20",
+        "뒤 리스트: 30"
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}

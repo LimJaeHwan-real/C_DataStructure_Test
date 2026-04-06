@@ -1,0 +1,33 @@
+{
+  "source": "../../Binary_Tree/Q3_E_BT.c",
+  "notes": "Extended cases for counting nodes with exactly one child.",
+  "cases": [
+    {
+      "name": "sample_count_one_child_nodes",
+      "input": "1\n50\n20\n60\n10\n30\na\na\n55\na\na\na\n80\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 10 20 55 30 50 60 80",
+        "The number of nodes that have exactly one child node is: 2."
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "single_node_has_no_one_child_nodes",
+      "input": "1\n42\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 42",
+        "The number of nodes that have exactly one child node is: 0."
+      ],
+      "normalize_whitespace": true
+    },
+    {
+      "name": "left_skewed_tree_has_two_one_child_nodes",
+      "input": "1\n50\n30\na\n10\na\na\na\n2\n0\n",
+      "expect_contains_all": [
+        "The resulting binary tree is: 10 30 50",
+        "The number of nodes that have exactly one child node is: 2."
+      ],
+      "normalize_whitespace": true
+    }
+  ]
+}
