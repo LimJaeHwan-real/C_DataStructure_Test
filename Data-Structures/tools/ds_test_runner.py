@@ -520,9 +520,12 @@ def print_results_for_file(test_file: Path, source: Path, results: list[CaseResu
     icon = '✅' if passed == total else '❌'
     print(f'{icon} [{passed}/{total}] {rel_test} -> {rel_source}')
     for index, result in enumerate(results, 1):
-        mark = '✅ 통과' if result.passed else '❌ 실패'
         display_name = translate_case_name(result.name)
-        print(f'  - {mark} {index}번 {display_name}: {result.reason}')
+        if result.passed:
+            print(f'  - ✅ {index}번 {display_name}')
+            continue
+
+        print(f'  - ❌ {index}번 {display_name}: {result.reason}')
         if not result.passed:
             compact_input = ' '.join(result.case_input.split()) if result.case_input else ''
             print_detail_block('입력값', compact_input, max_lines=1)
