@@ -504,12 +504,8 @@ def simplify_expected_text(value: str) -> str:
         if line.startswith('[') and line.endswith(']'):
             simplified_lines.append(line)
             continue
-        if ': ' in line:
-            simplified_lines.append(line.split(': ', 1)[1].strip())
-        else:
-            simplified_lines.append(line)
+        simplified_lines.append(translate_runtime_output(line))
     return '\n'.join(simplified_lines) if simplified_lines else '(없음)'
-
 
 def print_detail_block(label: str, value: str, max_lines: int = 40) -> None:
     text = value.decode() if isinstance(value, bytes) else str(value)
@@ -519,6 +515,105 @@ def print_detail_block(label: str, value: str, max_lines: int = 40) -> None:
         return
     for line in text.strip().splitlines()[:max_lines]:
         print(f'      {line}')
+
+
+
+def translate_runtime_output(value: str) -> str:
+    text = value.decode() if isinstance(value, bytes) else str(value)
+    translated = text.strip()
+    if not translated:
+        return '(없음)'
+
+    regex_replacements = [
+        (r'The value (-?\d+) was added at index (-?\d+)', r'인덱스 \2에 값 \1 삽입'),
+        (r'The maximum height of the binary tree is: (-?\d+)\.?', r'이진 트리의 최대 높이: \1'),
+        (r'The number of nodes that have exactly one child node is: (-?\d+)\.?', r'자식이 정확히 하나인 노드의 개수: \1'),
+        (r'The sum of all odd numbers in the binary tree is: (-?\d+)\.?', r'이진 트리의 모든 홀수 값의 합: \1'),
+        (r'The values smaller than (-?\d+) are:', r'\1보다 작은 값들:'),
+        (r'Smallest value of the binary tree is: (-?\d+)\.?', r'이진 트리의 최솟값: \1'),
+        (r'Enter an integer value for the Left child of (-?\d+):', r'\1의 왼쪽 자식 값을 입력하세요:'),
+        (r'Enter an integer value for the Right child of (-?\d+):', r'\1의 오른쪽 자식 값을 입력하세요:'),
+        (r'Please input your choice\(([^)]*)\):', r'메뉴를 선택하세요(\1):'),
+    ]
+
+    for pattern, replacement in regex_replacements:
+        translated = re.sub(pattern, replacement, translated)
+
+    literal_replacements = [
+        ('Input an integer that you want to add to the linked list 1:', '연결 리스트 1에 추가할 정수를 입력하세요:'),
+        ('Input an integer that you want to add to the linked list 2:', '연결 리스트 2에 추가할 정수를 입력하세요:'),
+        ('Input an integer that you want to add to the linked list:', '연결 리스트에 추가할 정수를 입력하세요:'),
+        ('Input an integer that you want to insert into the Binary Search Tree:', '이진 탐색 트리에 삽입할 정수를 입력하세요:'),
+        ('Input an integer that you want to insert into the List:', '리스트에 삽입할 정수를 입력하세요:'),
+        ('Input an integer that you want to insert into the queue:', '큐에 삽입할 정수를 입력하세요:'),
+        ('Input an integer that you want to insert into the stack:', '스택에 삽입할 정수를 입력하세요:'),
+        ('Input an integer that you want to add to the binary tree. Any Alpha value will be treated as NULL.', '이진 트리에 추가할 정수를 입력하세요. 문자를 입력하면 NULL로 처리합니다.'),
+        ('Enter an integer value for the root:', '루트 노드의 값을 입력하세요:'),
+        ('Enter an integer value to print smaller values:', '더 작은 값을 찾을 기준 값을 입력하세요:'),
+        ('Enter an integer value in stack to remove values until that value:', '해당 값이 나올 때까지 제거할 기준 값을 입력하세요:'),
+        ('Enter expressions without spaces to check whether it is balanced or not:', '균형 여부를 확인할 수식을 공백 없이 입력하세요:'),
+        ('Creating tree1:', '트리 1 생성:'),
+        ('Creating tree2:', '트리 2 생성:'),
+        ('The resulting linked lists after merging the given linked list are:', '주어진 연결 리스트를 번갈아 합친 결과:'),
+        ('The resulting linked lists after splitting the given linked list are:', '주어진 연결 리스트를 분할한 결과:'),
+        ('The resulting linked list after moving odd integers to the back of the linked list is:', '홀수를 뒤로 이동한 결과 연결 리스트:'),
+        ('The resulting linked list after moving even integers to the back of the linked list is:', '짝수를 뒤로 이동한 결과 연결 리스트:'),
+        ('The resulting linked list after moving largest stored value to the front of the list is:', '가장 큰 값을 맨 앞으로 이동한 결과 연결 리스트:'),
+        ('The resulting linked list after reversed the given linked list is:', '연결 리스트를 뒤집은 결과:'),
+        ('The resulting sorted linked list is:', '정렬된 결과 연결 리스트:'),
+        ('The resulting linked list 1:', '결과 연결 리스트 1:'),
+        ('The resulting linked list 2:', '결과 연결 리스트 2:'),
+        ('The resulting linked list is:', '결과 연결 리스트:'),
+        ('Linked list 1:', '연결 리스트 1:'),
+        ('Linked list 2:', '연결 리스트 2:'),
+        ('ll1:', '리스트 1:'),
+        ('ll2:', '리스트 2:'),
+        ('The resulting queue after removing odd integers is:', '홀수를 제거한 결과 큐:'),
+        ('The resulting queue after reversing its elements is:', '큐를 뒤집은 결과:'),
+        ('The resulting reversed queue is:', '뒤집은 결과 큐:'),
+        ('The resulting queue is:', '결과 큐:'),
+        ('The queue is:', '큐:'),
+        ('The resulting stack after removing even integers is:', '짝수를 제거한 결과 스택:'),
+        ('The resulting stack after removing values until the given value:', '지정한 값이 나올 때까지 제거한 결과 스택:'),
+        ('The stack is not pairwise consecutive.', '스택의 각 쌍은 연속된 수가 아닙니다.'),
+        ('The stack is pairwise consecutive.', '스택의 각 쌍은 연속된 수입니다.'),
+        ('The resulting stack is:', '결과 스택:'),
+        ('The stack is:', '스택:'),
+        ('The resulting level-order traversal of the binary search tree is:', '이진 탐색 트리의 레벨 순회 결과:'),
+        ('The resulting in-order traversal of the binary search tree is:', '이진 탐색 트리의 중위 순회 결과:'),
+        ('The resulting pre-order traversal of the binary search tree is:', '이진 탐색 트리의 전위 순회 결과:'),
+        ('The resulting post-order traversal of the binary search tree is:', '이진 탐색 트리의 후위 순회 결과:'),
+        ('The resulting binary tree is:', '결과 이진 트리:'),
+        ('The resulting tree1 is:', '결과 트리 1:'),
+        ('The resulting tree2 is:', '결과 트리 2:'),
+        ('Both trees are structurally identical.', '두 트리는 구조가 같습니다.'),
+        ('Both trees are different.', '두 트리는 다릅니다.'),
+        ('Mirror binary tree is:', '좌우 반전한 이진 트리:'),
+        ('The values stored in all nodes of the tree that has at least one great-grandchild are:', '증손자가 하나 이상 있는 노드의 값들:'),
+        ('Node not inserted', '노드를 삽입하지 못했습니다'),
+        ('Choice unknown;', '알 수 없는 메뉴 선택;'),
+        ('not balanced!', '균형이 맞지 않음!'),
+        ('balanced!', '균형 잡힘!'),
+        ('Front linked list:', '앞 리스트:'),
+        ('Back linked list:', '뒤 리스트:'),
+    ]
+
+    for original, replacement in literal_replacements:
+        translated = translated.replace(original, replacement)
+
+    translated = re.sub(r'\bEmpty\b', '비어 있음', translated)
+    return translated.strip()
+
+
+def translate_output_block(value: str) -> str:
+    text = value.decode() if isinstance(value, bytes) else str(value)
+    translated_lines: list[str] = []
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        translated_lines.append(translate_runtime_output(line))
+    return '\n'.join(translated_lines) if translated_lines else '(없음)'
 
 
 
@@ -544,8 +639,12 @@ def simplify_actual_output(value: str) -> str:
         'The smallest',
         'The height',
         'Two trees',
+        'Both trees',
         'Identical',
         'Not identical',
+        'Mirror binary tree is:',
+        'Node not inserted',
+        'Choice unknown;',
         'not balanced!',
         'balanced!',
         'Please input',
@@ -573,8 +672,8 @@ def simplify_actual_output(value: str) -> str:
         meaningful.append(segment)
 
     if meaningful:
-        return meaningful[-1]
-    return normalized
+        return translate_runtime_output(meaningful[-1])
+    return translate_runtime_output(normalized)
 
 
 
@@ -617,7 +716,7 @@ def print_results_for_file(test_file: Path, source: Path, results: list[CaseResu
 
             err = result.stderr.decode() if isinstance(result.stderr, bytes) else result.stderr
             if err and err.strip():
-                print_detail_block('stderr', err, max_lines=20)
+                print_detail_block('stderr', translate_output_block(err), max_lines=20)
     return passed, total, 1 if passed != total else 0
 
 
