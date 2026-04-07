@@ -6,11 +6,11 @@
       "name": "sample_balanced_expression",
       "input": "1\n{[]()[]}\n2\n0\n",
       "normalize_whitespace": true,
-      "expect_regex_all": [
-        "(^|\\n)balanced!"
-      ],
       "expect_not_contains": [
         "not balanced!"
+      ],
+      "expect_contains_all": [
+        "balanced!"
       ]
     },
     {

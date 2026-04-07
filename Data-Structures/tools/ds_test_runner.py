@@ -251,7 +251,7 @@ def match_case(output: str, case: dict[str, Any]) -> tuple[bool, str, str, str]:
 
     for pattern in case.get('expect_regex_all', []):
         flags = re.MULTILINE | re.DOTALL
-        target = output if not use_normalized else haystack
+        target = output
         if not re.search(pattern, target, flags):
             return False, '기대한 정규식 패턴과 일치하는 내용이 없습니다', pattern, target
 
